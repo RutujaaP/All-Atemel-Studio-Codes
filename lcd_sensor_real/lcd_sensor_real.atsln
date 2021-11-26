@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "lcd_sensor_real", "lcd_sensor_real\lcd_sensor_real.cproj", "{A9EB8598-BE07-4B7D-840D-5FD8794CD368}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A9EB8598-BE07-4B7D-840D-5FD8794CD368}.Debug|AVR.ActiveCfg = Debug|AVR
+		{A9EB8598-BE07-4B7D-840D-5FD8794CD368}.Debug|AVR.Build.0 = Debug|AVR
+		{A9EB8598-BE07-4B7D-840D-5FD8794CD368}.Release|AVR.ActiveCfg = Release|AVR
+		{A9EB8598-BE07-4B7D-840D-5FD8794CD368}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

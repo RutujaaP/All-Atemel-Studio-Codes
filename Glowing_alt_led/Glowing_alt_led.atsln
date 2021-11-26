@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "Glowing_alt_led", "Glowing_alt_led\Glowing_alt_led.cproj", "{E78325CE-F19F-420E-B50C-1AD9D0445114}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E78325CE-F19F-420E-B50C-1AD9D0445114}.Debug|AVR.ActiveCfg = Debug|AVR
+		{E78325CE-F19F-420E-B50C-1AD9D0445114}.Debug|AVR.Build.0 = Debug|AVR
+		{E78325CE-F19F-420E-B50C-1AD9D0445114}.Release|AVR.ActiveCfg = Release|AVR
+		{E78325CE-F19F-420E-B50C-1AD9D0445114}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

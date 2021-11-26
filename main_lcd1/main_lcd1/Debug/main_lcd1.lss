@@ -1,0 +1,278 @@
+
+main_lcd1.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000148  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000001c  00800060  00000148  000001bc  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .stab         000006cc  00000000  00000000  000001d8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  3 .stabstr      00000085  00000000  00000000  000008a4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_aranges 00000080  00000000  00000000  00000930  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000004c7  00000000  00000000  000009b0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 0000018b  00000000  00000000  00000e77  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   0000035b  00000000  00000000  00001002  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000084  00000000  00000000  00001360  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000129  00000000  00000000  000013e4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000000de  00000000  00000000  0000150d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e8 e4       	ldi	r30, 0x48	; 72
+  68:	f1 e0       	ldi	r31, 0x01	; 1
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	ac 37       	cpi	r26, 0x7C	; 124
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	10 e0       	ldi	r17, 0x00	; 0
+  78:	ac e7       	ldi	r26, 0x7C	; 124
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	ac 37       	cpi	r26, 0x7C	; 124
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 64 00 	call	0xc8	; 0xc8 <main>
+  8a:	0c 94 a2 00 	jmp	0x144	; 0x144 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <wrcommand>:
+	
+    
+}
+void wrcommand(unsigned char command)
+{
+	cbi(PORTB,PB0);
+  92:	c0 98       	cbi	0x18, 0	; 24
+	PORTD=command;
+  94:	82 bb       	out	0x12, r24	; 18
+	sbi(PORTB,PB1);
+  96:	c1 9a       	sbi	0x18, 1	; 24
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  98:	87 ea       	ldi	r24, 0xA7	; 167
+  9a:	91 e6       	ldi	r25, 0x61	; 97
+  9c:	01 97       	sbiw	r24, 0x01	; 1
+  9e:	f1 f7       	brne	.-4      	; 0x9c <wrcommand+0xa>
+  a0:	00 c0       	rjmp	.+0      	; 0xa2 <wrcommand+0x10>
+  a2:	00 00       	nop
+	_delay_ms(100);
+	cbi(PORTB,PB1);
+  a4:	c1 98       	cbi	0x18, 1	; 24
+}
+  a6:	08 95       	ret
+
+000000a8 <lcd_initialisation>:
+	_delay_ms(100);
+	cbi(PORTB,PB1);
+}
+void lcd_initialisation()
+{
+	wrcommand(0X38);
+  a8:	88 e3       	ldi	r24, 0x38	; 56
+  aa:	0e 94 49 00 	call	0x92	; 0x92 <wrcommand>
+	wrcommand(0X80);
+  ae:	80 e8       	ldi	r24, 0x80	; 128
+  b0:	0e 94 49 00 	call	0x92	; 0x92 <wrcommand>
+	wrcommand(0X06);
+  b4:	86 e0       	ldi	r24, 0x06	; 6
+  b6:	0e 94 49 00 	call	0x92	; 0x92 <wrcommand>
+	wrcommand(0X01);
+  ba:	81 e0       	ldi	r24, 0x01	; 1
+  bc:	0e 94 49 00 	call	0x92	; 0x92 <wrcommand>
+	wrcommand(0X0C);    //curser off
+  c0:	8c e0       	ldi	r24, 0x0C	; 12
+  c2:	0e 94 49 00 	call	0x92	; 0x92 <wrcommand>
+	/*wrcommand(0X0E);    //curser is on
+	wrcommand(0X0F);    //curser blink  */
+}
+  c6:	08 95       	ret
+
+000000c8 <main>:
+#include <avr/io.h>
+#include <avr/delay.h>
+#include <compat/deprecated.h>
+
+int main(void)
+{
+  c8:	0f 93       	push	r16
+  ca:	1f 93       	push	r17
+  cc:	cf 93       	push	r28
+  ce:	df 93       	push	r29
+	{
+		//TODO:: Please write your application code
+	}
+	*/
+	
+	DDRD=255;
+  d0:	8f ef       	ldi	r24, 0xFF	; 255
+  d2:	81 bb       	out	0x11, r24	; 17
+	DDRB=255;
+  d4:	87 bb       	out	0x17, r24	; 23
+	lcd_initialisation();
+  d6:	0e 94 54 00 	call	0xa8	; 0xa8 <lcd_initialisation>
+	wrcommand(0X80+1);
+  da:	c9 e4       	ldi	r28, 0x49	; 73
+  dc:	d0 e0       	ldi	r29, 0x00	; 0
+  de:	81 e8       	ldi	r24, 0x81	; 129
+  e0:	90 e0       	ldi	r25, 0x00	; 0
+  e2:	fe 01       	movw	r30, r28
+  e4:	09 95       	icall
+	lcd_string("SHWETA SHUKLA");
+  e6:	03 e9       	ldi	r16, 0x93	; 147
+  e8:	10 e0       	ldi	r17, 0x00	; 0
+  ea:	80 e6       	ldi	r24, 0x60	; 96
+  ec:	90 e0       	ldi	r25, 0x00	; 0
+  ee:	f8 01       	movw	r30, r16
+  f0:	09 95       	icall
+	wrcommand(0XC0+1);
+  f2:	81 ec       	ldi	r24, 0xC1	; 193
+  f4:	90 e0       	ldi	r25, 0x00	; 0
+  f6:	fe 01       	movw	r30, r28
+  f8:	09 95       	icall
+	lcd_string("ANKITA MISHRA");
+  fa:	8e e6       	ldi	r24, 0x6E	; 110
+  fc:	90 e0       	ldi	r25, 0x00	; 0
+  fe:	f8 01       	movw	r30, r16
+ 100:	09 95       	icall
+	  {
+		wrdata(a[i]);
+	  }	  */
+	
+    
+}
+ 102:	80 e0       	ldi	r24, 0x00	; 0
+ 104:	90 e0       	ldi	r25, 0x00	; 0
+ 106:	df 91       	pop	r29
+ 108:	cf 91       	pop	r28
+ 10a:	1f 91       	pop	r17
+ 10c:	0f 91       	pop	r16
+ 10e:	08 95       	ret
+
+00000110 <wrdata>:
+	_delay_ms(100);
+	cbi(PORTB,PB1);
+}
+void wrdata(unsigned char command)
+{
+	sbi(PORTB,PB0);
+ 110:	c0 9a       	sbi	0x18, 0	; 24
+	PORTD=command;
+ 112:	82 bb       	out	0x12, r24	; 18
+	sbi(PORTB,PB1);
+ 114:	c1 9a       	sbi	0x18, 1	; 24
+ 116:	87 ea       	ldi	r24, 0xA7	; 167
+ 118:	91 e6       	ldi	r25, 0x61	; 97
+ 11a:	01 97       	sbiw	r24, 0x01	; 1
+ 11c:	f1 f7       	brne	.-4      	; 0x11a <wrdata+0xa>
+ 11e:	00 c0       	rjmp	.+0      	; 0x120 <wrdata+0x10>
+ 120:	00 00       	nop
+	_delay_ms(100);
+	cbi(PORTB,PB1);
+ 122:	c1 98       	cbi	0x18, 1	; 24
+}
+ 124:	08 95       	ret
+
+00000126 <lcd_string>:
+	/*wrcommand(0X0E);    //curser is on
+	wrcommand(0X0F);    //curser blink  */
+}
+
+void lcd_string(unsigned char *string)
+{
+ 126:	cf 93       	push	r28
+ 128:	df 93       	push	r29
+ 12a:	ec 01       	movw	r28, r24
+	while(*string)   //while is 1 till last alphabet.. after that due to '\0' it will end
+ 12c:	88 81       	ld	r24, Y
+ 12e:	88 23       	and	r24, r24
+ 130:	31 f0       	breq	.+12     	; 0x13e <lcd_string+0x18>
+	wrcommand(0X0C);    //curser off
+	/*wrcommand(0X0E);    //curser is on
+	wrcommand(0X0F);    //curser blink  */
+}
+
+void lcd_string(unsigned char *string)
+ 132:	21 96       	adiw	r28, 0x01	; 1
+{
+	while(*string)   //while is 1 till last alphabet.. after that due to '\0' it will end
+	wrdata(*string++);   // it is taking a single letter at a time
+ 134:	0e 94 88 00 	call	0x110	; 0x110 <wrdata>
+	wrcommand(0X0F);    //curser blink  */
+}
+
+void lcd_string(unsigned char *string)
+{
+	while(*string)   //while is 1 till last alphabet.. after that due to '\0' it will end
+ 138:	89 91       	ld	r24, Y+
+ 13a:	88 23       	and	r24, r24
+ 13c:	d9 f7       	brne	.-10     	; 0x134 <lcd_string+0xe>
+	wrdata(*string++);   // it is taking a single letter at a time
+ 13e:	df 91       	pop	r29
+ 140:	cf 91       	pop	r28
+ 142:	08 95       	ret
+
+00000144 <_exit>:
+ 144:	f8 94       	cli
+
+00000146 <__stop_program>:
+ 146:	ff cf       	rjmp	.-2      	; 0x146 <__stop_program>

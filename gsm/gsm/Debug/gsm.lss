@@ -1,0 +1,1205 @@
+
+gsm.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000532  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000014  00800060  00000532  000005c6  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          000001d0  00800074  00800074  000005da  2**0
+                  ALLOC
+  3 .stab         000006cc  00000000  00000000  000005dc  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000085  00000000  00000000  00000ca8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 000000a0  00000000  00000000  00000d30  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000a50  00000000  00000000  00000dd0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000332  00000000  00000000  00001820  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000558  00000000  00000000  00001b52  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  0000017c  00000000  00000000  000020ac  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000194  00000000  00000000  00002228  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000005ed  00000000  00000000  000023bc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000068  00000000  00000000  000029a9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e2 e3       	ldi	r30, 0x32	; 50
+  68:	f5 e0       	ldi	r31, 0x05	; 5
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a4 37       	cpi	r26, 0x74	; 116
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	12 e0       	ldi	r17, 0x02	; 2
+  78:	a4 e7       	ldi	r26, 0x74	; 116
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a4 34       	cpi	r26, 0x44	; 68
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 75 02 	call	0x4ea	; 0x4ea <main>
+  8a:	0c 94 97 02 	jmp	0x52e	; 0x52e <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <wrcommand>:
+	wrdata(value);
+	k++;
+}*/
+void wrcommand(unsigned char command)
+{
+	cbi(PORTB,PB0);
+  92:	c0 98       	cbi	0x18, 0	; 24
+	PORTA=command;
+  94:	8b bb       	out	0x1b, r24	; 27
+	sbi(PORTB,PB1);
+  96:	c1 9a       	sbi	0x18, 1	; 24
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  98:	87 ea       	ldi	r24, 0xA7	; 167
+  9a:	91 e6       	ldi	r25, 0x61	; 97
+  9c:	01 97       	sbiw	r24, 0x01	; 1
+  9e:	f1 f7       	brne	.-4      	; 0x9c <wrcommand+0xa>
+  a0:	00 c0       	rjmp	.+0      	; 0xa2 <wrcommand+0x10>
+  a2:	00 00       	nop
+	_delay_ms(100);
+	cbi(PORTB,PB1);
+  a4:	c1 98       	cbi	0x18, 1	; 24
+}
+  a6:	08 95       	ret
+
+000000a8 <wrdata>:
+void wrdata(unsigned char command)
+{
+	sbi(PORTB,PB0);
+  a8:	c0 9a       	sbi	0x18, 0	; 24
+	PORTA=command;
+  aa:	8b bb       	out	0x1b, r24	; 27
+	sbi(PORTB,PB1);
+  ac:	c1 9a       	sbi	0x18, 1	; 24
+  ae:	87 ea       	ldi	r24, 0xA7	; 167
+  b0:	91 e6       	ldi	r25, 0x61	; 97
+  b2:	01 97       	sbiw	r24, 0x01	; 1
+  b4:	f1 f7       	brne	.-4      	; 0xb2 <wrdata+0xa>
+  b6:	00 c0       	rjmp	.+0      	; 0xb8 <wrdata+0x10>
+  b8:	00 00       	nop
+	_delay_ms(100);
+	cbi(PORTB,PB1);
+  ba:	c1 98       	cbi	0x18, 1	; 24
+}
+  bc:	08 95       	ret
+
+000000be <USART_Init>:
+#include <compat/deprecated.h>
+
+void USART_Init()
+{
+	/* Set baud rate */
+	UBRRH = 0;
+  be:	10 bc       	out	0x20, r1	; 32
+	UBRRL =51;
+  c0:	83 e3       	ldi	r24, 0x33	; 51
+  c2:	89 b9       	out	0x09, r24	; 9
+	/* Enable receiver and transmitter */
+	UCSRB|= (1<<RXEN)|(1<<TXEN);
+  c4:	8a b1       	in	r24, 0x0a	; 10
+  c6:	88 61       	ori	r24, 0x18	; 24
+  c8:	8a b9       	out	0x0a, r24	; 10
+	/* Set frame format: 8data---ucsz0=1,ucsz1=1, 1stop bit ---usbs=0*/
+	UCSRC |= (1 << URSEL)|(3<<UCSZ0);
+  ca:	80 b5       	in	r24, 0x20	; 32
+  cc:	86 68       	ori	r24, 0x86	; 134
+  ce:	80 bd       	out	0x20, r24	; 32
+}
+  d0:	08 95       	ret
+
+000000d2 <USART_Transmit>:
+
+//Transmission
+void USART_Transmit( unsigned char data )
+{
+	/* Wait for empty transmit buffer */
+	while ( !( UCSRA & (1<<UDRE)) )
+  d2:	5d 9b       	sbis	0x0b, 5	; 11
+  d4:	fe cf       	rjmp	.-4      	; 0xd2 <USART_Transmit>
+	;
+	/* Put data into buffer, sends the data */
+	UDR = data;
+  d6:	8c b9       	out	0x0c, r24	; 12
+}
+  d8:	08 95       	ret
+
+000000da <USART_Receive>:
+
+//RX
+unsigned char USART_Receive( void )
+{
+	/* Wait for data to be received */
+	while ( !(UCSRA & (1<<RXC)) )
+  da:	5f 9b       	sbis	0x0b, 7	; 11
+  dc:	fe cf       	rjmp	.-4      	; 0xda <USART_Receive>
+	;
+	/* Get and return received data from buffer */
+	return UDR;
+  de:	8c b1       	in	r24, 0x0c	; 12
+}
+  e0:	08 95       	ret
+
+000000e2 <usart_string>:
+unsigned char usart_string(unsigned char *string)
+{
+  e2:	cf 93       	push	r28
+  e4:	df 93       	push	r29
+  e6:	ec 01       	movw	r28, r24
+	while(*string)
+  e8:	88 81       	ld	r24, Y
+  ea:	88 23       	and	r24, r24
+  ec:	61 f0       	breq	.+24     	; 0x106 <usart_string+0x24>
+	while ( !(UCSRA & (1<<RXC)) )
+	;
+	/* Get and return received data from buffer */
+	return UDR;
+}
+unsigned char usart_string(unsigned char *string)
+  ee:	21 96       	adiw	r28, 0x01	; 1
+{
+	while(*string)
+	{
+		USART_Transmit(*string++);
+  f0:	0e 94 69 00 	call	0xd2	; 0xd2 <USART_Transmit>
+  f4:	83 ec       	ldi	r24, 0xC3	; 195
+  f6:	99 e0       	ldi	r25, 0x09	; 9
+  f8:	01 97       	sbiw	r24, 0x01	; 1
+  fa:	f1 f7       	brne	.-4      	; 0xf8 <usart_string+0x16>
+  fc:	00 c0       	rjmp	.+0      	; 0xfe <usart_string+0x1c>
+  fe:	00 00       	nop
+	/* Get and return received data from buffer */
+	return UDR;
+}
+unsigned char usart_string(unsigned char *string)
+{
+	while(*string)
+ 100:	89 91       	ld	r24, Y+
+ 102:	88 23       	and	r24, r24
+ 104:	a9 f7       	brne	.-22     	; 0xf0 <usart_string+0xe>
+	{
+		USART_Transmit(*string++);
+		_delay_ms(10);
+	}
+	
+}
+ 106:	df 91       	pop	r29
+ 108:	cf 91       	pop	r28
+ 10a:	08 95       	ret
+
+0000010c <SMS_receive>:
+
+
+
+
+void SMS_receive(unsigned char j)
+{
+ 10c:	2f 92       	push	r2
+ 10e:	3f 92       	push	r3
+ 110:	4f 92       	push	r4
+ 112:	5f 92       	push	r5
+ 114:	6f 92       	push	r6
+ 116:	7f 92       	push	r7
+ 118:	8f 92       	push	r8
+ 11a:	9f 92       	push	r9
+ 11c:	af 92       	push	r10
+ 11e:	bf 92       	push	r11
+ 120:	cf 92       	push	r12
+ 122:	df 92       	push	r13
+ 124:	ef 92       	push	r14
+ 126:	ff 92       	push	r15
+ 128:	0f 93       	push	r16
+ 12a:	1f 93       	push	r17
+ 12c:	cf 93       	push	r28
+ 12e:	df 93       	push	r29
+ 130:	00 d0       	rcall	.+0      	; 0x132 <SMS_receive+0x26>
+ 132:	0f 92       	push	r0
+ 134:	cd b7       	in	r28, 0x3d	; 61
+ 136:	de b7       	in	r29, 0x3e	; 62
+ 138:	18 2f       	mov	r17, r24
+	unsigned char i=0,nopes=0,temp=0,valu=0,temp1=0,end=0,a=0,final=0,w=0;
+	UCSRB|= (1<<RXEN)|(1<<TXEN);
+ 13a:	8a b1       	in	r24, 0x0a	; 10
+ 13c:	88 61       	ori	r24, 0x18	; 24
+ 13e:	8a b9       	out	0x0a, r24	; 10
+ 140:	83 ec       	ldi	r24, 0xC3	; 195
+ 142:	99 e0       	ldi	r25, 0x09	; 9
+ 144:	01 97       	sbiw	r24, 0x01	; 1
+ 146:	f1 f7       	brne	.-4      	; 0x144 <SMS_receive+0x38>
+ 148:	00 c0       	rjmp	.+0      	; 0x14a <SMS_receive+0x3e>
+ 14a:	00 00       	nop
+	_delay_ms(10);
+
+	usart_string("AT+CMGF=1");
+ 14c:	80 e6       	ldi	r24, 0x60	; 96
+ 14e:	90 e0       	ldi	r25, 0x00	; 0
+ 150:	0e 94 71 00 	call	0xe2	; 0xe2 <usart_string>
+	USART_Transmit(13);
+ 154:	8d e0       	ldi	r24, 0x0D	; 13
+ 156:	0e 94 69 00 	call	0xd2	; 0xd2 <USART_Transmit>
+ 15a:	e3 ec       	ldi	r30, 0xC3	; 195
+ 15c:	f9 e0       	ldi	r31, 0x09	; 9
+ 15e:	31 97       	sbiw	r30, 0x01	; 1
+ 160:	f1 f7       	brne	.-4      	; 0x15e <SMS_receive+0x52>
+ 162:	00 c0       	rjmp	.+0      	; 0x164 <SMS_receive+0x58>
+ 164:	00 00       	nop
+	_delay_ms(10);
+
+	usart_string("AT+CMGR=");
+ 166:	8a e6       	ldi	r24, 0x6A	; 106
+ 168:	90 e0       	ldi	r25, 0x00	; 0
+ 16a:	0e 94 71 00 	call	0xe2	; 0xe2 <usart_string>
+
+	if(j<10)
+ 16e:	1a 30       	cpi	r17, 0x0A	; 10
+ 170:	48 f4       	brcc	.+18     	; 0x184 <SMS_receive+0x78>
+	USART_Transmit((j%10)+48);
+ 172:	81 2f       	mov	r24, r17
+ 174:	6a e0       	ldi	r22, 0x0A	; 10
+ 176:	0e 94 8b 02 	call	0x516	; 0x516 <__udivmodqi4>
+ 17a:	89 2f       	mov	r24, r25
+ 17c:	80 5d       	subi	r24, 0xD0	; 208
+ 17e:	0e 94 69 00 	call	0xd2	; 0xd2 <USART_Transmit>
+ 182:	10 c0       	rjmp	.+32     	; 0x1a4 <SMS_receive+0x98>
+	else
+	{
+		USART_Transmit(((j/10)%10)+48);
+ 184:	2a e0       	ldi	r18, 0x0A	; 10
+ 186:	81 2f       	mov	r24, r17
+ 188:	62 2f       	mov	r22, r18
+ 18a:	0e 94 8b 02 	call	0x516	; 0x516 <__udivmodqi4>
+ 18e:	19 2f       	mov	r17, r25
+ 190:	0e 94 8b 02 	call	0x516	; 0x516 <__udivmodqi4>
+ 194:	89 2f       	mov	r24, r25
+ 196:	80 5d       	subi	r24, 0xD0	; 208
+ 198:	0e 94 69 00 	call	0xd2	; 0xd2 <USART_Transmit>
+		USART_Transmit((j%10)+48);
+ 19c:	81 2f       	mov	r24, r17
+ 19e:	80 5d       	subi	r24, 0xD0	; 208
+ 1a0:	0e 94 69 00 	call	0xd2	; 0xd2 <USART_Transmit>
+ 1a4:	83 ec       	ldi	r24, 0xC3	; 195
+ 1a6:	99 e0       	ldi	r25, 0x09	; 9
+ 1a8:	01 97       	sbiw	r24, 0x01	; 1
+ 1aa:	f1 f7       	brne	.-4      	; 0x1a8 <SMS_receive+0x9c>
+ 1ac:	00 c0       	rjmp	.+0      	; 0x1ae <SMS_receive+0xa2>
+ 1ae:	00 00       	nop
+	}
+
+	_delay_ms(10);
+	USART_Transmit(13);
+ 1b0:	8d e0       	ldi	r24, 0x0D	; 13
+ 1b2:	0e 94 69 00 	call	0xd2	; 0xd2 <USART_Transmit>
+
+
+
+void SMS_receive(unsigned char j)
+{
+	unsigned char i=0,nopes=0,temp=0,valu=0,temp1=0,end=0,a=0,final=0,w=0;
+ 1b6:	cc 24       	eor	r12, r12
+ 1b8:	dd 24       	eor	r13, r13
+ 1ba:	19 82       	std	Y+1, r1	; 0x01
+ 1bc:	10 e0       	ldi	r17, 0x00	; 0
+		{
+			temp1=7;
+			
+			while(i<100)
+			{
+				sms[i]=USART_Receive();
+ 1be:	0f 2e       	mov	r0, r31
+ 1c0:	fd e7       	ldi	r31, 0x7D	; 125
+ 1c2:	af 2e       	mov	r10, r31
+ 1c4:	f0 e0       	ldi	r31, 0x00	; 0
+ 1c6:	bf 2e       	mov	r11, r31
+ 1c8:	f0 2d       	mov	r31, r0
+
+				if(end==1)
+				{
+					rsms[a]=sms[i];
+ 1ca:	0f 2e       	mov	r0, r31
+ 1cc:	f7 e1       	ldi	r31, 0x17	; 23
+ 1ce:	ef 2e       	mov	r14, r31
+ 1d0:	f1 e0       	ldi	r31, 0x01	; 1
+ 1d2:	ff 2e       	mov	r15, r31
+ 1d4:	f0 2d       	mov	r31, r0
+					a++;
+				}
+
+				if((sms[i]==0x0a) && end==0)
+				{
+					end=1;
+ 1d6:	99 24       	eor	r9, r9
+ 1d8:	93 94       	inc	r9
+		}
+		else if(temp1==6 && temp=='"')
+		{
+			temp1=7;
+			
+			while(i<100)
+ 1da:	00 e0       	ldi	r16, 0x00	; 0
+					a++;
+				}
+
+				if((sms[i]==0x0a) && end==0)
+				{
+					end=1;
+ 1dc:	89 2c       	mov	r8, r9
+				}
+				else
+				i++;
+			}
+
+			wrcommand(0x80);
+ 1de:	0f 2e       	mov	r0, r31
+ 1e0:	f9 e4       	ldi	r31, 0x49	; 73
+ 1e2:	4f 2e       	mov	r4, r31
+ 1e4:	f0 e0       	ldi	r31, 0x00	; 0
+ 1e6:	5f 2e       	mov	r5, r31
+ 1e8:	f0 2d       	mov	r31, r0
+				if(w<16)             //16 COLOUMNS ARE THERE IN LCD
+				wrdata(rsms[w]);
+				else if(w==16)
+				{
+					wrcommand(0xc0);
+					wrdata(rsms[w]);
+ 1ea:	0f 2e       	mov	r0, r31
+ 1ec:	f7 e2       	ldi	r31, 0x27	; 39
+ 1ee:	6f 2e       	mov	r6, r31
+ 1f0:	f1 e0       	ldi	r31, 0x01	; 1
+ 1f2:	7f 2e       	mov	r7, r31
+ 1f4:	f0 2d       	mov	r31, r0
+		{
+			temp1=5;
+		}
+		else if(temp1==5 && temp==',')
+		{
+			temp1=6;
+ 1f6:	0f 2e       	mov	r0, r31
+ 1f8:	f6 e0       	ldi	r31, 0x06	; 6
+ 1fa:	2f 2e       	mov	r2, r31
+ 1fc:	f0 2d       	mov	r31, r0
+		{
+			temp1=4;
+		}
+		else if(temp1==4 && temp=='"')
+		{
+			temp1=5;
+ 1fe:	0f 2e       	mov	r0, r31
+ 200:	f5 e0       	ldi	r31, 0x05	; 5
+ 202:	3f 2e       	mov	r3, r31
+ 204:	f0 2d       	mov	r31, r0
+ 206:	02 c0       	rjmp	.+4      	; 0x20c <SMS_receive+0x100>
+		{
+			temp1=6;
+		}
+		else if(temp1==6 && temp=='"')
+		{
+			temp1=7;
+ 208:	97 e0       	ldi	r25, 0x07	; 7
+ 20a:	99 83       	std	Y+1, r25	; 0x01
+	USART_Transmit(13);
+	temp=0;
+
+	while(final==0)
+	{
+		temp=USART_Receive();
+ 20c:	0e 94 6d 00 	call	0xda	; 0xda <USART_Receive>
+
+		if(temp=='R')
+ 210:	82 35       	cpi	r24, 0x52	; 82
+ 212:	09 f4       	brne	.+2      	; 0x216 <SMS_receive+0x10a>
+ 214:	7d c0       	rjmp	.+250    	; 0x310 <SMS_receive+0x204>
+		{
+			temp1=1;
+		}
+		else if(temp1==1 && temp=='E')
+ 216:	e9 81       	ldd	r30, Y+1	; 0x01
+ 218:	e1 30       	cpi	r30, 0x01	; 1
+ 21a:	19 f4       	brne	.+6      	; 0x222 <SMS_receive+0x116>
+ 21c:	85 34       	cpi	r24, 0x45	; 69
+ 21e:	39 f4       	brne	.+14     	; 0x22e <SMS_receive+0x122>
+ 220:	79 c0       	rjmp	.+242    	; 0x314 <SMS_receive+0x208>
+		{
+			temp1=2;
+		}
+		else if(temp1==2 && temp=='A')
+ 222:	f9 81       	ldd	r31, Y+1	; 0x01
+ 224:	f2 30       	cpi	r31, 0x02	; 2
+ 226:	19 f4       	brne	.+6      	; 0x22e <SMS_receive+0x122>
+ 228:	81 34       	cpi	r24, 0x41	; 65
+ 22a:	39 f4       	brne	.+14     	; 0x23a <SMS_receive+0x12e>
+ 22c:	76 c0       	rjmp	.+236    	; 0x31a <SMS_receive+0x20e>
+		{
+			temp1=3;
+		}
+		else if(temp1==3 && temp=='D')
+ 22e:	99 81       	ldd	r25, Y+1	; 0x01
+ 230:	93 30       	cpi	r25, 0x03	; 3
+ 232:	19 f4       	brne	.+6      	; 0x23a <SMS_receive+0x12e>
+ 234:	84 34       	cpi	r24, 0x44	; 68
+ 236:	39 f4       	brne	.+14     	; 0x246 <SMS_receive+0x13a>
+ 238:	73 c0       	rjmp	.+230    	; 0x320 <SMS_receive+0x214>
+		{
+			temp1=4;
+		}
+		else if(temp1==4 && temp=='"')
+ 23a:	e9 81       	ldd	r30, Y+1	; 0x01
+ 23c:	e4 30       	cpi	r30, 0x04	; 4
+ 23e:	19 f4       	brne	.+6      	; 0x246 <SMS_receive+0x13a>
+ 240:	82 32       	cpi	r24, 0x22	; 34
+ 242:	41 f4       	brne	.+16     	; 0x254 <SMS_receive+0x148>
+ 244:	70 c0       	rjmp	.+224    	; 0x326 <SMS_receive+0x21a>
+		{
+			temp1=5;
+		}
+		else if(temp1==5 && temp==',')
+ 246:	f9 81       	ldd	r31, Y+1	; 0x01
+ 248:	f5 30       	cpi	r31, 0x05	; 5
+ 24a:	21 f4       	brne	.+8      	; 0x254 <SMS_receive+0x148>
+ 24c:	8c 32       	cpi	r24, 0x2C	; 44
+ 24e:	f1 f6       	brne	.-68     	; 0x20c <SMS_receive+0x100>
+		{
+			temp1=6;
+ 250:	29 82       	std	Y+1, r2	; 0x01
+ 252:	dc cf       	rjmp	.-72     	; 0x20c <SMS_receive+0x100>
+		}
+		else if(temp1==6 && temp=='"')
+ 254:	99 81       	ldd	r25, Y+1	; 0x01
+ 256:	96 30       	cpi	r25, 0x06	; 6
+ 258:	c9 f6       	brne	.-78     	; 0x20c <SMS_receive+0x100>
+ 25a:	82 32       	cpi	r24, 0x22	; 34
+ 25c:	b9 f6       	brne	.-82     	; 0x20c <SMS_receive+0x100>
+		{
+			temp1=7;
+			
+			while(i<100)
+ 25e:	14 36       	cpi	r17, 0x64	; 100
+ 260:	f8 f4       	brcc	.+62     	; 0x2a0 <SMS_receive+0x194>
+			{
+				sms[i]=USART_Receive();
+ 262:	0e 94 6d 00 	call	0xda	; 0xda <USART_Receive>
+ 266:	f5 01       	movw	r30, r10
+ 268:	e1 0f       	add	r30, r17
+ 26a:	f1 1d       	adc	r31, r1
+ 26c:	80 83       	st	Z, r24
+
+				if(end==1)
+ 26e:	e1 e0       	ldi	r30, 0x01	; 1
+ 270:	de 16       	cp	r13, r30
+ 272:	29 f4       	brne	.+10     	; 0x27e <SMS_receive+0x172>
+				{
+					rsms[a]=sms[i];
+ 274:	f7 01       	movw	r30, r14
+ 276:	ec 0d       	add	r30, r12
+ 278:	f1 1d       	adc	r31, r1
+ 27a:	80 83       	st	Z, r24
+					a++;
+ 27c:	c3 94       	inc	r12
+				}
+
+				if((sms[i]==0x0a) && end==0)
+ 27e:	8a 30       	cpi	r24, 0x0A	; 10
+ 280:	19 f4       	brne	.+6      	; 0x288 <SMS_receive+0x17c>
+ 282:	dd 20       	and	r13, r13
+ 284:	41 f0       	breq	.+16     	; 0x296 <SMS_receive+0x18a>
+ 286:	05 c0       	rjmp	.+10     	; 0x292 <SMS_receive+0x186>
+				{
+					end=1;
+				}
+				else if((sms[i]==0x0d) && end==1)
+ 288:	8d 30       	cpi	r24, 0x0D	; 13
+ 28a:	19 f4       	brne	.+6      	; 0x292 <SMS_receive+0x186>
+ 28c:	f1 e0       	ldi	r31, 0x01	; 1
+ 28e:	df 16       	cp	r13, r31
+ 290:	49 f0       	breq	.+18     	; 0x2a4 <SMS_receive+0x198>
+				{
+					final=1;
+					break;
+				}
+				else
+				i++;
+ 292:	1f 5f       	subi	r17, 0xFF	; 255
+ 294:	01 c0       	rjmp	.+2      	; 0x298 <SMS_receive+0x18c>
+					a++;
+				}
+
+				if((sms[i]==0x0a) && end==0)
+				{
+					end=1;
+ 296:	d8 2c       	mov	r13, r8
+		}
+		else if(temp1==6 && temp=='"')
+		{
+			temp1=7;
+			
+			while(i<100)
+ 298:	14 36       	cpi	r17, 0x64	; 100
+ 29a:	18 f3       	brcs	.-58     	; 0x262 <SMS_receive+0x156>
+ 29c:	09 83       	std	Y+1, r16	; 0x01
+ 29e:	03 c0       	rjmp	.+6      	; 0x2a6 <SMS_receive+0x19a>
+ 2a0:	09 83       	std	Y+1, r16	; 0x01
+ 2a2:	01 c0       	rjmp	.+2      	; 0x2a6 <SMS_receive+0x19a>
+				{
+					end=1;
+				}
+				else if((sms[i]==0x0d) && end==1)
+				{
+					final=1;
+ 2a4:	99 82       	std	Y+1, r9	; 0x01
+				}
+				else
+				i++;
+			}
+
+			wrcommand(0x80);
+ 2a6:	80 e8       	ldi	r24, 0x80	; 128
+ 2a8:	90 e0       	ldi	r25, 0x00	; 0
+ 2aa:	f2 01       	movw	r30, r4
+ 2ac:	09 95       	icall
+ 2ae:	9b 82       	std	Y+3, r9	; 0x03
+ 2b0:	0a 83       	std	Y+2, r16	; 0x02
+ 2b2:	06 c0       	rjmp	.+12     	; 0x2c0 <SMS_receive+0x1b4>
+ 2b4:	8a 81       	ldd	r24, Y+2	; 0x02
+ 2b6:	8f 5f       	subi	r24, 0xFF	; 255
+ 2b8:	8a 83       	std	Y+2, r24	; 0x02
+ 2ba:	9b 81       	ldd	r25, Y+3	; 0x03
+ 2bc:	9f 5f       	subi	r25, 0xFF	; 255
+ 2be:	9b 83       	std	Y+3, r25	; 0x03
+			for(unsigned char w=0;w<32;w++)
+			{
+				if(w<16)             //16 COLOUMNS ARE THERE IN LCD
+ 2c0:	ea 81       	ldd	r30, Y+2	; 0x02
+ 2c2:	e0 31       	cpi	r30, 0x10	; 16
+ 2c4:	48 f4       	brcc	.+18     	; 0x2d8 <SMS_receive+0x1cc>
+				wrdata(rsms[w]);
+ 2c6:	f7 01       	movw	r30, r14
+ 2c8:	8a 81       	ldd	r24, Y+2	; 0x02
+ 2ca:	e8 0f       	add	r30, r24
+ 2cc:	f1 1d       	adc	r31, r1
+ 2ce:	80 81       	ld	r24, Z
+ 2d0:	90 2f       	mov	r25, r16
+ 2d2:	0e 94 54 00 	call	0xa8	; 0xa8 <wrdata>
+ 2d6:	15 c0       	rjmp	.+42     	; 0x302 <SMS_receive+0x1f6>
+				else if(w==16)
+ 2d8:	9a 81       	ldd	r25, Y+2	; 0x02
+ 2da:	90 31       	cpi	r25, 0x10	; 16
+ 2dc:	51 f4       	brne	.+20     	; 0x2f2 <SMS_receive+0x1e6>
+				{
+					wrcommand(0xc0);
+ 2de:	80 ec       	ldi	r24, 0xC0	; 192
+ 2e0:	90 e0       	ldi	r25, 0x00	; 0
+ 2e2:	f2 01       	movw	r30, r4
+ 2e4:	09 95       	icall
+					wrdata(rsms[w]);
+ 2e6:	f3 01       	movw	r30, r6
+ 2e8:	80 81       	ld	r24, Z
+ 2ea:	90 2f       	mov	r25, r16
+ 2ec:	0e 94 54 00 	call	0xa8	; 0xa8 <wrdata>
+ 2f0:	e1 cf       	rjmp	.-62     	; 0x2b4 <SMS_receive+0x1a8>
+				}
+				else
+				wrdata(rsms[w]);
+ 2f2:	f7 01       	movw	r30, r14
+ 2f4:	8a 81       	ldd	r24, Y+2	; 0x02
+ 2f6:	e8 0f       	add	r30, r24
+ 2f8:	f1 1d       	adc	r31, r1
+ 2fa:	80 81       	ld	r24, Z
+ 2fc:	90 2f       	mov	r25, r16
+ 2fe:	0e 94 54 00 	call	0xa8	; 0xa8 <wrdata>
+				else
+				i++;
+			}
+
+			wrcommand(0x80);
+			for(unsigned char w=0;w<32;w++)
+ 302:	9b 81       	ldd	r25, Y+3	; 0x03
+ 304:	90 32       	cpi	r25, 0x20	; 32
+ 306:	b0 f2       	brcs	.-84     	; 0x2b4 <SMS_receive+0x1a8>
+
+	_delay_ms(10);
+	USART_Transmit(13);
+	temp=0;
+
+	while(final==0)
+ 308:	e9 81       	ldd	r30, Y+1	; 0x01
+ 30a:	ee 23       	and	r30, r30
+ 30c:	71 f4       	brne	.+28     	; 0x32a <SMS_receive+0x21e>
+ 30e:	7c cf       	rjmp	.-264    	; 0x208 <SMS_receive+0xfc>
+	{
+		temp=USART_Receive();
+
+		if(temp=='R')
+		{
+			temp1=1;
+ 310:	99 82       	std	Y+1, r9	; 0x01
+ 312:	7c cf       	rjmp	.-264    	; 0x20c <SMS_receive+0x100>
+		}
+		else if(temp1==1 && temp=='E')
+		{
+			temp1=2;
+ 314:	f2 e0       	ldi	r31, 0x02	; 2
+ 316:	f9 83       	std	Y+1, r31	; 0x01
+ 318:	79 cf       	rjmp	.-270    	; 0x20c <SMS_receive+0x100>
+		}
+		else if(temp1==2 && temp=='A')
+		{
+			temp1=3;
+ 31a:	83 e0       	ldi	r24, 0x03	; 3
+ 31c:	89 83       	std	Y+1, r24	; 0x01
+ 31e:	76 cf       	rjmp	.-276    	; 0x20c <SMS_receive+0x100>
+		}
+		else if(temp1==3 && temp=='D')
+		{
+			temp1=4;
+ 320:	94 e0       	ldi	r25, 0x04	; 4
+ 322:	99 83       	std	Y+1, r25	; 0x01
+ 324:	73 cf       	rjmp	.-282    	; 0x20c <SMS_receive+0x100>
+		}
+		else if(temp1==4 && temp=='"')
+		{
+			temp1=5;
+ 326:	39 82       	std	Y+1, r3	; 0x01
+ 328:	71 cf       	rjmp	.-286    	; 0x20c <SMS_receive+0x100>
+				wrdata(rsms[w]);
+			}
+		
+		}
+	}
+}
+ 32a:	0f 90       	pop	r0
+ 32c:	0f 90       	pop	r0
+ 32e:	0f 90       	pop	r0
+ 330:	df 91       	pop	r29
+ 332:	cf 91       	pop	r28
+ 334:	1f 91       	pop	r17
+ 336:	0f 91       	pop	r16
+ 338:	ff 90       	pop	r15
+ 33a:	ef 90       	pop	r14
+ 33c:	df 90       	pop	r13
+ 33e:	cf 90       	pop	r12
+ 340:	bf 90       	pop	r11
+ 342:	af 90       	pop	r10
+ 344:	9f 90       	pop	r9
+ 346:	8f 90       	pop	r8
+ 348:	7f 90       	pop	r7
+ 34a:	6f 90       	pop	r6
+ 34c:	5f 90       	pop	r5
+ 34e:	4f 90       	pop	r4
+ 350:	3f 90       	pop	r3
+ 352:	2f 90       	pop	r2
+ 354:	08 95       	ret
+
+00000356 <check_sms>:
+
+
+
+
+check_sms()
+{
+ 356:	2f 92       	push	r2
+ 358:	3f 92       	push	r3
+ 35a:	4f 92       	push	r4
+ 35c:	5f 92       	push	r5
+ 35e:	6f 92       	push	r6
+ 360:	7f 92       	push	r7
+ 362:	8f 92       	push	r8
+ 364:	9f 92       	push	r9
+ 366:	af 92       	push	r10
+ 368:	bf 92       	push	r11
+ 36a:	cf 92       	push	r12
+ 36c:	df 92       	push	r13
+ 36e:	ef 92       	push	r14
+ 370:	ff 92       	push	r15
+ 372:	0f 93       	push	r16
+ 374:	1f 93       	push	r17
+ 376:	cf 93       	push	r28
+ 378:	df 93       	push	r29
+	unsigned char i=0,nopes=0,temp=0,valu=0,temp1=0,end=0,a=0,j=0,x1=0,index_no=0;
+	UCSRB|= (1<<RXEN)|(1<<TXEN);
+ 37a:	8a b1       	in	r24, 0x0a	; 10
+ 37c:	88 61       	ori	r24, 0x18	; 24
+ 37e:	8a b9       	out	0x0a, r24	; 10
+ 380:	83 ec       	ldi	r24, 0xC3	; 195
+ 382:	99 e0       	ldi	r25, 0x09	; 9
+ 384:	01 97       	sbiw	r24, 0x01	; 1
+ 386:	f1 f7       	brne	.-4      	; 0x384 <check_sms+0x2e>
+ 388:	00 c0       	rjmp	.+0      	; 0x38a <check_sms+0x34>
+ 38a:	00 00       	nop
+
+
+
+check_sms()
+{
+	unsigned char i=0,nopes=0,temp=0,valu=0,temp1=0,end=0,a=0,j=0,x1=0,index_no=0;
+ 38c:	cc 24       	eor	r12, r12
+ 38e:	ff 24       	eor	r15, r15
+ 390:	c0 e0       	ldi	r28, 0x00	; 0
+ 392:	d0 e0       	ldi	r29, 0x00	; 0
+		{
+			temp1=7;
+			
+			while(1)
+			{
+				sms[i]=USART_Receive();
+ 394:	0d e7       	ldi	r16, 0x7D	; 125
+ 396:	10 e0       	ldi	r17, 0x00	; 0
+		{
+			temp1=6;
+		}
+		else if(temp1==6 && temp==' ')
+		{
+			temp1=7;
+ 398:	0f 2e       	mov	r0, r31
+ 39a:	f7 e0       	ldi	r31, 0x07	; 7
+ 39c:	6f 2e       	mov	r6, r31
+ 39e:	f0 2d       	mov	r31, r0
+			if(x1==1)
+			index_no= ((sms[5]-48)*1 );
+
+			else if(x1==2)
+			{
+				index_no=(( (sms[5]-48)*10 ) + ( (sms[6]-48)*1 ) );
+ 3a0:	0f 2e       	mov	r0, r31
+ 3a2:	f3 e8       	ldi	r31, 0x83	; 131
+ 3a4:	af 2e       	mov	r10, r31
+ 3a6:	f0 e0       	ldi	r31, 0x00	; 0
+ 3a8:	bf 2e       	mov	r11, r31
+ 3aa:	f0 2d       	mov	r31, r0
+ 3ac:	15 01       	movw	r2, r10
+ 3ae:	08 94       	sec
+ 3b0:	21 08       	sbc	r2, r1
+ 3b2:	31 08       	sbc	r3, r1
+			{
+				x1++;
+			}
+
+			if(x1==1)
+			index_no= ((sms[5]-48)*1 );
+ 3b4:	0f 2e       	mov	r0, r31
+ 3b6:	f2 e8       	ldi	r31, 0x82	; 130
+ 3b8:	4f 2e       	mov	r4, r31
+ 3ba:	f0 e0       	ldi	r31, 0x00	; 0
+ 3bc:	5f 2e       	mov	r5, r31
+ 3be:	f0 2d       	mov	r31, r0
+				else
+				i++;
+			}
+
+			
+			for(unsigned char x=5;x<i;x++)
+ 3c0:	0f 2e       	mov	r0, r31
+ 3c2:	f5 e0       	ldi	r31, 0x05	; 5
+ 3c4:	df 2e       	mov	r13, r31
+ 3c6:	f0 2d       	mov	r31, r0
+		{
+			temp1=5;
+		}
+		else if(temp1==5 && temp==':')
+		{
+			temp1=6;
+ 3c8:	0f 2e       	mov	r0, r31
+ 3ca:	f6 e0       	ldi	r31, 0x06	; 6
+ 3cc:	7f 2e       	mov	r7, r31
+ 3ce:	f0 2d       	mov	r31, r0
+		{
+			temp1=3;
+		}
+		else if(temp1==3 && temp=='T')
+		{
+			temp1=4;
+ 3d0:	88 24       	eor	r8, r8
+ 3d2:	68 94       	set
+ 3d4:	82 f8       	bld	r8, 2
+		{
+			temp1=2;
+		}
+		else if(temp1==2 && temp=='M')
+		{
+			temp1=3;
+ 3d6:	0f 2e       	mov	r0, r31
+ 3d8:	f3 e0       	ldi	r31, 0x03	; 3
+ 3da:	9f 2e       	mov	r9, r31
+ 3dc:	f0 2d       	mov	r31, r0
+	{
+		temp=USART_Receive();
+
+		 if(temp1==0 && temp=='C')
+		{
+			temp1=2;
+ 3de:	ee 24       	eor	r14, r14
+ 3e0:	68 94       	set
+ 3e2:	e1 f8       	bld	r14, 1
+	UCSRB|= (1<<RXEN)|(1<<TXEN);
+	_delay_ms(10);
+
+	while(i<10)
+	{
+		temp=USART_Receive();
+ 3e4:	0e 94 6d 00 	call	0xda	; 0xda <USART_Receive>
+
+		 if(temp1==0 && temp=='C')
+ 3e8:	cc 23       	and	r28, r28
+ 3ea:	19 f4       	brne	.+6      	; 0x3f2 <check_sms+0x9c>
+ 3ec:	83 34       	cpi	r24, 0x43	; 67
+ 3ee:	59 f4       	brne	.+22     	; 0x406 <check_sms+0xb0>
+ 3f0:	4f c0       	rjmp	.+158    	; 0x490 <__stack+0x31>
+		{
+			temp1=2;
+		}
+		else if(temp1==2 && temp=='M')
+ 3f2:	c2 30       	cpi	r28, 0x02	; 2
+ 3f4:	19 f4       	brne	.+6      	; 0x3fc <check_sms+0xa6>
+ 3f6:	8d 34       	cpi	r24, 0x4D	; 77
+ 3f8:	61 f4       	brne	.+24     	; 0x412 <check_sms+0xbc>
+ 3fa:	4c c0       	rjmp	.+152    	; 0x494 <__stack+0x35>
+		{
+			temp1=3;
+		}
+		else if(temp1==3 && temp=='T')
+ 3fc:	c3 30       	cpi	r28, 0x03	; 3
+ 3fe:	19 f4       	brne	.+6      	; 0x406 <check_sms+0xb0>
+ 400:	84 35       	cpi	r24, 0x54	; 84
+ 402:	71 f4       	brne	.+28     	; 0x420 <check_sms+0xca>
+ 404:	49 c0       	rjmp	.+146    	; 0x498 <__stack+0x39>
+		{
+			temp1=4;
+		}
+		else if(temp1==4 && temp=='I')
+ 406:	c4 30       	cpi	r28, 0x04	; 4
+ 408:	21 f4       	brne	.+8      	; 0x412 <check_sms+0xbc>
+ 40a:	89 34       	cpi	r24, 0x49	; 73
+ 40c:	09 f0       	breq	.+2      	; 0x410 <check_sms+0xba>
+ 40e:	47 c0       	rjmp	.+142    	; 0x49e <__stack+0x3f>
+ 410:	45 c0       	rjmp	.+138    	; 0x49c <__stack+0x3d>
+		{
+			temp1=5;
+		}
+		else if(temp1==5 && temp==':')
+ 412:	c5 30       	cpi	r28, 0x05	; 5
+ 414:	29 f4       	brne	.+10     	; 0x420 <check_sms+0xca>
+ 416:	8a 33       	cpi	r24, 0x3A	; 58
+ 418:	09 f0       	breq	.+2      	; 0x41c <check_sms+0xc6>
+ 41a:	41 c0       	rjmp	.+130    	; 0x49e <__stack+0x3f>
+		{
+			temp1=6;
+ 41c:	c7 2d       	mov	r28, r7
+ 41e:	3f c0       	rjmp	.+126    	; 0x49e <__stack+0x3f>
+		}
+		else if(temp1==6 && temp==' ')
+ 420:	c6 30       	cpi	r28, 0x06	; 6
+ 422:	e9 f5       	brne	.+122    	; 0x49e <__stack+0x3f>
+ 424:	80 32       	cpi	r24, 0x20	; 32
+ 426:	d9 f5       	brne	.+118    	; 0x49e <__stack+0x3f>
+		{
+			temp1=7;
+			
+			while(1)
+			{
+				sms[i]=USART_Receive();
+ 428:	0e 94 6d 00 	call	0xda	; 0xda <USART_Receive>
+ 42c:	f8 01       	movw	r30, r16
+ 42e:	ed 0f       	add	r30, r29
+ 430:	f1 1d       	adc	r31, r1
+ 432:	80 83       	st	Z, r24
+
+				if((sms[i]==0x0d)  )
+ 434:	8d 30       	cpi	r24, 0x0D	; 13
+ 436:	21 f4       	brne	.+8      	; 0x440 <check_sms+0xea>
+ 438:	9d 2f       	mov	r25, r29
+				else
+				i++;
+			}
+
+			
+			for(unsigned char x=5;x<i;x++)
+ 43a:	d6 30       	cpi	r29, 0x06	; 6
+ 43c:	18 f4       	brcc	.+6      	; 0x444 <check_sms+0xee>
+ 43e:	09 c0       	rjmp	.+18     	; 0x452 <check_sms+0xfc>
+				{
+					break;
+				}
+				
+				else
+				i++;
+ 440:	df 5f       	subi	r29, 0xFF	; 255
+			}
+ 442:	f2 cf       	rjmp	.-28     	; 0x428 <check_sms+0xd2>
+
+			
+			for(unsigned char x=5;x<i;x++)
+ 444:	8d 2d       	mov	r24, r13
+ 446:	8f 5f       	subi	r24, 0xFF	; 255
+ 448:	89 17       	cp	r24, r25
+ 44a:	e9 f7       	brne	.-6      	; 0x446 <check_sms+0xf0>
+}
+
+
+
+
+check_sms()
+ 44c:	eb ef       	ldi	r30, 0xFB	; 251
+ 44e:	fe 0e       	add	r15, r30
+ 450:	f9 0e       	add	r15, r25
+			for(unsigned char x=5;x<i;x++)
+			{
+				x1++;
+			}
+
+			if(x1==1)
+ 452:	f1 e0       	ldi	r31, 0x01	; 1
+ 454:	ff 16       	cp	r15, r31
+ 456:	41 f4       	brne	.+16     	; 0x468 <__stack+0x9>
+			index_no= ((sms[5]-48)*1 );
+ 458:	f2 01       	movw	r30, r4
+ 45a:	80 81       	ld	r24, Z
+ 45c:	0f 2e       	mov	r0, r31
+ 45e:	f0 ed       	ldi	r31, 0xD0	; 208
+ 460:	cf 2e       	mov	r12, r31
+ 462:	f0 2d       	mov	r31, r0
+ 464:	c8 0e       	add	r12, r24
+ 466:	0f c0       	rjmp	.+30     	; 0x486 <__stack+0x27>
+
+			else if(x1==2)
+ 468:	f2 e0       	ldi	r31, 0x02	; 2
+ 46a:	ff 16       	cp	r15, r31
+ 46c:	61 f4       	brne	.+24     	; 0x486 <__stack+0x27>
+			{
+				index_no=(( (sms[5]-48)*10 ) + ( (sms[6]-48)*1 ) );
+ 46e:	f5 01       	movw	r30, r10
+ 470:	90 81       	ld	r25, Z
+ 472:	90 51       	subi	r25, 0x10	; 16
+ 474:	f1 01       	movw	r30, r2
+ 476:	80 81       	ld	r24, Z
+ 478:	88 0f       	add	r24, r24
+ 47a:	c8 2e       	mov	r12, r24
+ 47c:	cc 0c       	add	r12, r12
+ 47e:	cc 0c       	add	r12, r12
+ 480:	8c 0d       	add	r24, r12
+ 482:	c9 2e       	mov	r12, r25
+ 484:	c8 0e       	add	r12, r24
+
+			else;
+
+			
+
+			SMS_receive(index_no);
+ 486:	8c 2d       	mov	r24, r12
+ 488:	0e 94 86 00 	call	0x10c	; 0x10c <SMS_receive>
+		{
+			temp1=6;
+		}
+		else if(temp1==6 && temp==' ')
+		{
+			temp1=7;
+ 48c:	c6 2d       	mov	r28, r6
+ 48e:	07 c0       	rjmp	.+14     	; 0x49e <__stack+0x3f>
+	{
+		temp=USART_Receive();
+
+		 if(temp1==0 && temp=='C')
+		{
+			temp1=2;
+ 490:	ce 2d       	mov	r28, r14
+ 492:	05 c0       	rjmp	.+10     	; 0x49e <__stack+0x3f>
+		}
+		else if(temp1==2 && temp=='M')
+		{
+			temp1=3;
+ 494:	c9 2d       	mov	r28, r9
+ 496:	03 c0       	rjmp	.+6      	; 0x49e <__stack+0x3f>
+		}
+		else if(temp1==3 && temp=='T')
+		{
+			temp1=4;
+ 498:	c8 2d       	mov	r28, r8
+ 49a:	01 c0       	rjmp	.+2      	; 0x49e <__stack+0x3f>
+		}
+		else if(temp1==4 && temp=='I')
+		{
+			temp1=5;
+ 49c:	cd 2d       	mov	r28, r13
+{
+	unsigned char i=0,nopes=0,temp=0,valu=0,temp1=0,end=0,a=0,j=0,x1=0,index_no=0;
+	UCSRB|= (1<<RXEN)|(1<<TXEN);
+	_delay_ms(10);
+
+	while(i<10)
+ 49e:	da 30       	cpi	r29, 0x0A	; 10
+ 4a0:	08 f4       	brcc	.+2      	; 0x4a4 <__stack+0x45>
+ 4a2:	a0 cf       	rjmp	.-192    	; 0x3e4 <check_sms+0x8e>
+			
+			
+		}
+	}
+
+}
+ 4a4:	df 91       	pop	r29
+ 4a6:	cf 91       	pop	r28
+ 4a8:	1f 91       	pop	r17
+ 4aa:	0f 91       	pop	r16
+ 4ac:	ff 90       	pop	r15
+ 4ae:	ef 90       	pop	r14
+ 4b0:	df 90       	pop	r13
+ 4b2:	cf 90       	pop	r12
+ 4b4:	bf 90       	pop	r11
+ 4b6:	af 90       	pop	r10
+ 4b8:	9f 90       	pop	r9
+ 4ba:	8f 90       	pop	r8
+ 4bc:	7f 90       	pop	r7
+ 4be:	6f 90       	pop	r6
+ 4c0:	5f 90       	pop	r5
+ 4c2:	4f 90       	pop	r4
+ 4c4:	3f 90       	pop	r3
+ 4c6:	2f 90       	pop	r2
+ 4c8:	08 95       	ret
+
+000004ca <lcd_initialisation>:
+	_delay_ms(100);
+	cbi(PORTB,PB1);
+}
+void lcd_initialisation()
+{
+	wrcommand(0X38);
+ 4ca:	88 e3       	ldi	r24, 0x38	; 56
+ 4cc:	0e 94 49 00 	call	0x92	; 0x92 <wrcommand>
+	wrcommand(0X80);
+ 4d0:	80 e8       	ldi	r24, 0x80	; 128
+ 4d2:	0e 94 49 00 	call	0x92	; 0x92 <wrcommand>
+	wrcommand(0X06);
+ 4d6:	86 e0       	ldi	r24, 0x06	; 6
+ 4d8:	0e 94 49 00 	call	0x92	; 0x92 <wrcommand>
+	wrcommand(0X01);
+ 4dc:	81 e0       	ldi	r24, 0x01	; 1
+ 4de:	0e 94 49 00 	call	0x92	; 0x92 <wrcommand>
+	wrcommand(0X0C);    //curser off
+ 4e2:	8c e0       	ldi	r24, 0x0C	; 12
+ 4e4:	0e 94 49 00 	call	0x92	; 0x92 <wrcommand>
+	/*wrcommand(0X0E);    //curser is on
+	wrcommand(0X0F);    //curser blink  */
+}
+ 4e8:	08 95       	ret
+
+000004ea <main>:
+
+int main(void)
+{
+	char A;
+	DDRA = 255;
+ 4ea:	8f ef       	ldi	r24, 0xFF	; 255
+ 4ec:	8a bb       	out	0x1a, r24	; 26
+	DDRB = 255;
+ 4ee:	87 bb       	out	0x17, r24	; 23
+	USART_Init();
+ 4f0:	0e 94 5f 00 	call	0xbe	; 0xbe <USART_Init>
+ 4f4:	8f e3       	ldi	r24, 0x3F	; 63
+ 4f6:	9d e0       	ldi	r25, 0x0D	; 13
+ 4f8:	a3 e0       	ldi	r26, 0x03	; 3
+ 4fa:	81 50       	subi	r24, 0x01	; 1
+ 4fc:	90 40       	sbci	r25, 0x00	; 0
+ 4fe:	a0 40       	sbci	r26, 0x00	; 0
+ 500:	e1 f7       	brne	.-8      	; 0x4fa <main+0x10>
+ 502:	00 c0       	rjmp	.+0      	; 0x504 <main+0x1a>
+ 504:	00 00       	nop
+		_delay_ms(8000);
+		usart_string("AT+CMGS=\"9822278273\"\r");
+		_delay_ms(8000);
+		usart_string("HI!");
+		USART_Transmit(26);*/
+lcd_initialisation();
+ 506:	0e 94 65 02 	call	0x4ca	; 0x4ca <lcd_initialisation>
+wrdata('A');
+ 50a:	81 e4       	ldi	r24, 0x41	; 65
+ 50c:	0e 94 54 00 	call	0xa8	; 0xa8 <wrdata>
+//usart_string("ATE0\r");
+//_delay_ms(8000);
+while(1)
+{
+
+check_sms();
+ 510:	0e 94 ab 01 	call	0x356	; 0x356 <check_sms>
+ 514:	fd cf       	rjmp	.-6      	; 0x510 <main+0x26>
+
+00000516 <__udivmodqi4>:
+ 516:	99 1b       	sub	r25, r25
+ 518:	79 e0       	ldi	r23, 0x09	; 9
+ 51a:	04 c0       	rjmp	.+8      	; 0x524 <__udivmodqi4_ep>
+
+0000051c <__udivmodqi4_loop>:
+ 51c:	99 1f       	adc	r25, r25
+ 51e:	96 17       	cp	r25, r22
+ 520:	08 f0       	brcs	.+2      	; 0x524 <__udivmodqi4_ep>
+ 522:	96 1b       	sub	r25, r22
+
+00000524 <__udivmodqi4_ep>:
+ 524:	88 1f       	adc	r24, r24
+ 526:	7a 95       	dec	r23
+ 528:	c9 f7       	brne	.-14     	; 0x51c <__udivmodqi4_loop>
+ 52a:	80 95       	com	r24
+ 52c:	08 95       	ret
+
+0000052e <_exit>:
+ 52e:	f8 94       	cli
+
+00000530 <__stop_program>:
+ 530:	ff cf       	rjmp	.-2      	; 0x530 <__stop_program>

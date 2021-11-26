@@ -1,0 +1,299 @@
+
+rgb.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000016e  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000028  00800060  0000016e  000001e2  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .stab         000006cc  00000000  00000000  0000020c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  3 .stabstr      00000085  00000000  00000000  000008d8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_aranges 00000080  00000000  00000000  00000960  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000419  00000000  00000000  000009e0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 0000013e  00000000  00000000  00000df9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000350  00000000  00000000  00000f37  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000034  00000000  00000000  00001288  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000000e8  00000000  00000000  000012bc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000073  00000000  00000000  000013a4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000018  00000000  00000000  00001417  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ee e6       	ldi	r30, 0x6E	; 110
+  68:	f1 e0       	ldi	r31, 0x01	; 1
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a8 38       	cpi	r26, 0x88	; 136
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	10 e0       	ldi	r17, 0x00	; 0
+  78:	a8 e8       	ldi	r26, 0x88	; 136
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a8 38       	cpi	r26, 0x88	; 136
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 49 00 	call	0x92	; 0x92 <main>
+  8a:	0c 94 b5 00 	jmp	0x16a	; 0x16a <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <main>:
+
+#include <avr/io.h>
+#include <avr/delay.h>
+
+int main(void)
+{
+  92:	cf 93       	push	r28
+  94:	df 93       	push	r29
+  96:	cd b7       	in	r28, 0x3d	; 61
+  98:	de b7       	in	r29, 0x3e	; 62
+  9a:	a8 97       	sbiw	r28, 0x28	; 40
+  9c:	0f b6       	in	r0, 0x3f	; 63
+  9e:	f8 94       	cli
+  a0:	de bf       	out	0x3e, r29	; 62
+  a2:	0f be       	out	0x3f, r0	; 63
+  a4:	cd bf       	out	0x3d, r28	; 61
+    while(1)
+    {
+        //TODO:: Please write your application code 
+		DDRA=0b11111111;
+  a6:	cc 24       	eor	r12, r12
+  a8:	ca 94       	dec	r12
+		DDRD=0b11111111;
+		DDRC=0b11111111;
+	int a[10]={0b1000000, 0b1111001, 0b0100100, 0b0110000, 0b0011001, 0b0010010, 0b0000010, 0b1111000, 0b0000000, 0b0010000};    //common anode ... it is connected to porta  
+  aa:	0f 2e       	mov	r0, r31
+  ac:	f5 e1       	ldi	r31, 0x15	; 21
+  ae:	af 2e       	mov	r10, r31
+  b0:	bb 24       	eor	r11, r11
+  b2:	f0 2d       	mov	r31, r0
+  b4:	ac 0e       	add	r10, r28
+  b6:	bd 1e       	adc	r11, r29
+  b8:	0f 2e       	mov	r0, r31
+  ba:	f0 e6       	ldi	r31, 0x60	; 96
+  bc:	8f 2e       	mov	r8, r31
+  be:	f0 e0       	ldi	r31, 0x00	; 0
+  c0:	9f 2e       	mov	r9, r31
+  c2:	f0 2d       	mov	r31, r0
+  c4:	0f 2e       	mov	r0, r31
+  c6:	f4 e1       	ldi	r31, 0x14	; 20
+  c8:	7f 2e       	mov	r7, r31
+  ca:	f0 2d       	mov	r31, r0
+		
+	for(int i=0;i<9;i++)
+	{
+		//PORTD=b[i];
+		if(i<3)
+		PORTC=0b00000001;
+  cc:	ff 24       	eor	r15, r15
+  ce:	f3 94       	inc	r15
+		if(i>=3 && i<6)
+		PORTC=0b00000010;
+  d0:	ee 24       	eor	r14, r14
+  d2:	68 94       	set
+  d4:	e1 f8       	bld	r14, 1
+		if(i>=6 && i<9)
+		PORTC=0b00000100;
+  d6:	dd 24       	eor	r13, r13
+  d8:	68 94       	set
+  da:	d2 f8       	bld	r13, 2
+
+
+#include <avr/io.h>
+#include <avr/delay.h>
+
+int main(void)
+  dc:	ae 01       	movw	r20, r28
+  de:	47 5d       	subi	r20, 0xD7	; 215
+  e0:	5f 4f       	sbci	r21, 0xFF	; 255
+		PORTC=0b00000001;
+		if(i>=3 && i<6)
+		PORTC=0b00000010;
+		if(i>=6 && i<9)
+		PORTC=0b00000100;
+		PORTD=b[i];
+  e2:	6a 2c       	mov	r6, r10
+  e4:	5b 2c       	mov	r5, r11
+int main(void)
+{
+    while(1)
+    {
+        //TODO:: Please write your application code 
+		DDRA=0b11111111;
+  e6:	ca ba       	out	0x1a, r12	; 26
+		DDRD=0b11111111;
+  e8:	c1 ba       	out	0x11, r12	; 17
+		DDRC=0b11111111;
+  ea:	c4 ba       	out	0x14, r12	; 20
+	int a[10]={0b1000000, 0b1111001, 0b0100100, 0b0110000, 0b0011001, 0b0010010, 0b0000010, 0b1111000, 0b0000000, 0b0010000};    //common anode ... it is connected to porta  
+  ec:	f5 01       	movw	r30, r10
+  ee:	d4 01       	movw	r26, r8
+  f0:	87 2d       	mov	r24, r7
+  f2:	0d 90       	ld	r0, X+
+  f4:	01 92       	st	Z+, r0
+  f6:	81 50       	subi	r24, 0x01	; 1
+  f8:	e1 f7       	brne	.-8      	; 0xf2 <main+0x60>
+    int b[10]={0b0111111, 0b0000110, 0b1011011, 0b1001111, 0b1100110, 0b1101101, 0b1111101, 0b0000111, 0b1111111, 0b1101111};    //common cathode ... it is connected to portd
+  fa:	fe 01       	movw	r30, r28
+  fc:	31 96       	adiw	r30, 0x01	; 1
+  fe:	a4 e7       	ldi	r26, 0x74	; 116
+ 100:	b0 e0       	ldi	r27, 0x00	; 0
+ 102:	87 2d       	mov	r24, r7
+ 104:	0d 90       	ld	r0, X+
+ 106:	01 92       	st	Z+, r0
+ 108:	81 50       	subi	r24, 0x01	; 1
+ 10a:	e1 f7       	brne	.-8      	; 0x104 <main+0x72>
+ 10c:	de 01       	movw	r26, r28
+ 10e:	11 96       	adiw	r26, 0x01	; 1
+		
+		
+	for(int i=0;i<9;i++)
+ 110:	60 e0       	ldi	r22, 0x00	; 0
+ 112:	70 e0       	ldi	r23, 0x00	; 0
+	{
+		//PORTD=b[i];
+		if(i<3)
+ 114:	63 30       	cpi	r22, 0x03	; 3
+ 116:	71 05       	cpc	r23, r1
+ 118:	0c f4       	brge	.+2      	; 0x11c <main+0x8a>
+		PORTC=0b00000001;
+ 11a:	f5 ba       	out	0x15, r15	; 21
+
+
+#include <avr/io.h>
+#include <avr/delay.h>
+
+int main(void)
+ 11c:	9b 01       	movw	r18, r22
+	for(int i=0;i<9;i++)
+	{
+		//PORTD=b[i];
+		if(i<3)
+		PORTC=0b00000001;
+		if(i>=3 && i<6)
+ 11e:	cb 01       	movw	r24, r22
+ 120:	03 97       	sbiw	r24, 0x03	; 3
+ 122:	83 30       	cpi	r24, 0x03	; 3
+ 124:	91 05       	cpc	r25, r1
+ 126:	08 f4       	brcc	.+2      	; 0x12a <main+0x98>
+		PORTC=0b00000010;
+ 128:	e5 ba       	out	0x15, r14	; 21
+		if(i>=6 && i<9)
+ 12a:	c9 01       	movw	r24, r18
+ 12c:	06 97       	sbiw	r24, 0x06	; 6
+ 12e:	83 30       	cpi	r24, 0x03	; 3
+ 130:	91 05       	cpc	r25, r1
+ 132:	08 f4       	brcc	.+2      	; 0x136 <main+0xa4>
+		PORTC=0b00000100;
+ 134:	d5 ba       	out	0x15, r13	; 21
+		PORTD=b[i];
+ 136:	8c 91       	ld	r24, X
+ 138:	12 96       	adiw	r26, 0x02	; 2
+ 13a:	82 bb       	out	0x12, r24	; 18
+ 13c:	e6 2d       	mov	r30, r6
+ 13e:	f5 2d       	mov	r31, r5
+		for(int j=0;j<10;j++)
+		{
+			PORTA=a[j];
+ 140:	80 81       	ld	r24, Z
+ 142:	32 96       	adiw	r30, 0x02	; 2
+ 144:	8b bb       	out	0x1b, r24	; 27
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 146:	0f e9       	ldi	r16, 0x9F	; 159
+ 148:	16 e8       	ldi	r17, 0x86	; 134
+ 14a:	21 e0       	ldi	r18, 0x01	; 1
+ 14c:	01 50       	subi	r16, 0x01	; 1
+ 14e:	10 40       	sbci	r17, 0x00	; 0
+ 150:	20 40       	sbci	r18, 0x00	; 0
+ 152:	e1 f7       	brne	.-8      	; 0x14c <main+0xba>
+ 154:	00 c0       	rjmp	.+0      	; 0x156 <main+0xc4>
+ 156:	00 00       	nop
+		if(i>=3 && i<6)
+		PORTC=0b00000010;
+		if(i>=6 && i<9)
+		PORTC=0b00000100;
+		PORTD=b[i];
+		for(int j=0;j<10;j++)
+ 158:	e4 17       	cp	r30, r20
+ 15a:	f5 07       	cpc	r31, r21
+ 15c:	89 f7       	brne	.-30     	; 0x140 <main+0xae>
+		DDRC=0b11111111;
+	int a[10]={0b1000000, 0b1111001, 0b0100100, 0b0110000, 0b0011001, 0b0010010, 0b0000010, 0b1111000, 0b0000000, 0b0010000};    //common anode ... it is connected to porta  
+    int b[10]={0b0111111, 0b0000110, 0b1011011, 0b1001111, 0b1100110, 0b1101101, 0b1111101, 0b0000111, 0b1111111, 0b1101111};    //common cathode ... it is connected to portd
+		
+		
+	for(int i=0;i<9;i++)
+ 15e:	6f 5f       	subi	r22, 0xFF	; 255
+ 160:	7f 4f       	sbci	r23, 0xFF	; 255
+ 162:	69 30       	cpi	r22, 0x09	; 9
+ 164:	71 05       	cpc	r23, r1
+ 166:	b1 f6       	brne	.-84     	; 0x114 <main+0x82>
+ 168:	be cf       	rjmp	.-132    	; 0xe6 <main+0x54>
+
+0000016a <_exit>:
+ 16a:	f8 94       	cli
+
+0000016c <__stop_program>:
+ 16c:	ff cf       	rjmp	.-2      	; 0x16c <__stop_program>
